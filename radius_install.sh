@@ -131,7 +131,7 @@ cp -f ./rep-online.php ./radius
 # --- 7-3. daloRADIUS에서 로그 보기위해 수정 ---
 touch /var/log/daloradius.log
 chmod 777 /var/log/daloradius.log
-sed -i "s/\$configValues\['CONFIG_LOG_FILE'\] = '.*';/\$configValues\['CONFIG_LOG_FILE'\] = '/var/log/daloradius.log';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
+sed -i "s/\$configValues\['CONFIG_LOG_FILE'\] = '.*';/\$configValues\['CONFIG_LOG_FILE'\] = '\/var\/log\/daloradius.log';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
 chmod 777 /var/log/radius/radius.log
 
 # --- 8. 서비스 시작 및 방화벽 설정 ---
