@@ -25,7 +25,7 @@ else
     echo "--- ${DALORADIUS_ZIP} 파일이 이미 존재합니다. 다운로드를 건너뜁니다."
 fi
 
-rm -rf "${WEB_ROOT}/daloradius*"
+rm -rf "${WEB_ROOT}/1.3*"
 rm -rf "${WEB_ROOT}/radius*"
 unzip "${DALORADIUS_ZIP}"
 rm -rf "__MACOSX"
