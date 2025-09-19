@@ -132,7 +132,7 @@ cp -f ./rep-online.php ./radius
 touch /var/log/daloradius.log
 chmod 777 /var/log/daloradius.log
 sed -i "s/\$configValues\['CONFIG_LOG_FILE'\] = '.*';/\$configValues\['CONFIG_LOG_FILE'\] = '\/var\/log\/daloradius.log';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
-chmod -R 644 /var/log/radius/
+chmod -R 755 /var/log/radius/
 
 # --- 8. 서비스 시작 및 방화벽 설정 ---
 echo "--- 8. 서비스 시작 및 방화벽 설정 중..."
