@@ -125,6 +125,9 @@ echo "--- 7. menu-mng-rad-nas.php, mng-rad-nas.php 수정중..."
 cp -f ./menu-mng-rad-nas.php ./radius
 cp -f ./mng-rad-nas.php ./radius
 
+# --- 7-1. daloRADIUS에 Accounting Table 수정 ---
+cp -f ./rep-online.php ./radius
+
 # --- 8. 서비스 시작 및 방화벽 설정 ---
 echo "--- 8. 서비스 시작 및 방화벽 설정 중..."
 systemctl start httpd
