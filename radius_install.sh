@@ -28,7 +28,7 @@ fi
 rm -rf "${WEB_ROOT}/daloradius*"
 rm -rf "${WEB_ROOT}/radius*"
 unzip "${DALORADIUS_ZIP}"
-mv "${WEB_ROOT}/daloradius*" "${WEB_ROOT}/radius"
+mv "${WEB_ROOT}/daloradius-1.3" "${WEB_ROOT}/radius"
 
 # --- 3. MySQL/MariaDB 데이터베이스 설정 ---
 echo "--- 3. MySQL/MariaDB 데이터베이스 설정 중..."
