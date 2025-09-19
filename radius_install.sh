@@ -128,6 +128,12 @@ cp -f ./mng-rad-nas.php ./radius
 # --- 7-1. daloRADIUS에 Accounting Table 수정 ---
 cp -f ./rep-online.php ./radius
 
+# --- 7-3. daloRADIUS에서 로그 보기위해 수정 ---
+touch /var/log/daloradius.log
+chmod 777 /var/log/daloradius.log
+sed -i "s#\$configValues['CONFIG_LOG_FILE'] = '/tmp/daloradius.log';#\$configValues['CONFIG_LOG_FILE'] = '/var/log/daloradius.log';#g" "${WEB_ROOT}/radius/library/daloradius.conf.php"
+chmod 777 /var/log/radius/radius.log
+
 # --- 8. 서비스 시작 및 방화벽 설정 ---
 echo "--- 8. 서비스 시작 및 방화벽 설정 중..."
 systemctl start httpd
