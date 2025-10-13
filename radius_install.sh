@@ -150,6 +150,15 @@ setenforce 0
 # --- SELINUX=enforcing 일 경우에만 SELINUX=permissive로 변경 ---
 sed -i '/^SELINUX=enforcing/s/enforcing/permissive/' /etc/selinux/config
 
+# --- 9. 설치에 필요한 임시 파일들을 삭제 ---
+rm -f 1.3.zip
+mv README radius
+rm -f menu-mng-rad-nas.php
+rm -f mng-rad-nas.php
+rm -f radius_install.sh
+rm -f rep-online.php
+rm -f sql
+
 echo "==============================================="
 echo "✅ daloRADIUS 설치가 완료되었습니다!"
 echo "웹 브라우저에서 아래 주소로 접속하세요:"
