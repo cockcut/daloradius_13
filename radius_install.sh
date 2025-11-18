@@ -108,7 +108,7 @@ sed -i '/^#\s*update request {/,/^#\s*}/s/^#\s*//' ${freeradius_path}/sites-avai
 rm ${freeradius_path}/mods-enabled/sql
 rm ${freeradius_path}/mods-enabled/sqlcounter
 rm ${freeradius_path}/mods-enabled/sqlippool
-ln -s ${freeradius_path}/mods-available/sql ${freeradius_path}/mods-enable${freeradius_path}/mods-enabled/sqld/sql
+ln -s ${freeradius_path}/mods-available/sql ${freeradius_path}/mods-enabled/sql
 ln -s ${freeradius_path}/mods-available/sqlcounter ${freeradius_path}/mods-enabled/sqlcounter
 ln -s ${freeradius_path}/mods-available/sqlippool ${freeradius_path}/mods-enabled/sqlippool
 
