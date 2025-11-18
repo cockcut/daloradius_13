@@ -92,27 +92,30 @@ cd -
 # --- 5. FreeRADIUS 설정 (EAP & Accounting 포함) ---
 echo "--- 5. FreeRADIUS 설정 중..."
 cp -f ./sql ${freeradius_path}/mods-available/
-#sed -i 's|driver = "rlm_sql_null"|driver = "rlm_sql_mysql"|' ${freeradius_path}/mods-available/sql
-#sed -i 's|dialect = "sqlite"|dialect = "mysql"|' ${freeradius_path}/mods-available/sql
+####sed -i 's|driver = "rlm_sql_null"|driver = "rlm_sql_mysql"|' ${freeradius_path}/mods-available/sql
+####sed -i 's|dialect = "sqlite"|dialect = "mysql"|' ${freeradius_path}/mods-available/sql
 sed -i 's|dialect = ${modules.sql.dialect}|dialect = "mysql"|' ${freeradius_path}/mods-available/sqlcounter
-#sed -i 's|#\s*read_clients = yes|read_clients = yes|' ${freeradius_path}/mods-available/sql
-#sed -i 's|^#\s*server = .*|server = "'$MYSQL_HOST'"|' ${freeradius_path}/mods-available/sql
-#sed -i 's|^#\s*port = .*|port = "'$MYSQL_PORT'"|' ${freeradius_path}/mods-available/sql
-#sed -i '1,$s/radius_db.*/radius_db="'$MYSQL_DATABASE'"/g' ${freeradius_path}/mods-available/sql
-#sed -i 's|^#\s*password = .*|password = "'$MYSQL_PASSWORD'"|' ${freeradius_path}/mods-available/sql
-#sed -i 's|^#\s*login = .*|login = "'$MYSQL_USER'"|' ${freeradius_path}/mods-available/sql
-#sed -i 's#/etc/ssl#/etc/raddb#g' ${freeradius_path}/mods-available/sql
-#sed -i 's#/etc/raddb/certs/private#/etc/raddb/certs#g' ${freeradius_path}/mods-available/sql
+####sed -i 's|#\s*read_clients = yes|read_clients = yes|' ${freeradius_path}/mods-available/sql
+####sed -i 's|^#\s*server = .*|server = "'$MYSQL_HOST'"|' ${freeradius_path}/mods-available/sql
+####sed -i 's|^#\s*port = .*|port = "'$MYSQL_PORT'"|' ${freeradius_path}/mods-available/sql
+####sed -i '1,$s/radius_db.*/radius_db="'$MYSQL_DATABASE'"/g' ${freeradius_path}/mods-available/sql
+####sed -i 's|^#\s*password = .*|password = "'$MYSQL_PASSWORD'"|' ${freeradius_path}/mods-available/sql
+####sed -i 's|^#\s*login = .*|login = "'$MYSQL_USER'"|' ${freeradius_path}/mods-available/sql
+####sed -i 's#/etc/ssl#/etc/raddb#g' ${freeradius_path}/mods-available/sql
+####sed -i 's#/etc/raddb/certs/private#/etc/raddb/certs#g' ${freeradius_path}/mods-available/sql
 sed -i 's/-sql/sql/g' ${freeradius_path}/sites-available/default
 sed -i '/^#\s*update request {/,/^#\s*}/s/^#\s*//' ${freeradius_path}/sites-available/default
-ln -s ${freeradius_path}/mods-available/sql ${freeradius_path}/mods-available/sql
+rm ${freeradius_path}/mods-enabled/sql
+rm ${freeradius_path}/mods-enabled/sqlcounter
+rm ${freeradius_path}/mods-enabled/sqlippool
+ln -s ${freeradius_path}/mods-available/sql ${freeradius_path}/mods-enable${freeradius_path}/mods-enabled/sqld/sql
 ln -s ${freeradius_path}/mods-available/sqlcounter ${freeradius_path}/mods-enabled/sqlcounter
 ln -s ${freeradius_path}/mods-available/sqlippool ${freeradius_path}/mods-enabled/sqlippool
 
 # --- 6. daloRADIUS 설정 ---
 echo "--- 6. daloRADIUS 설정 중..."
 cp "${WEB_ROOT}/radius/library/daloradius.conf.php.sample" "${WEB_ROOT}/radius/library/daloradius.conf.php"
-#sed -i "s/\$configValues\['CONFIG_DB_ENGINE'\] = '.*';/\$configValues\['CONFIG_DB_ENGINE'\] = 'mysqli';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
+####sed -i "s/\$configValues\['CONFIG_DB_ENGINE'\] = '.*';/\$configValues\['CONFIG_DB_ENGINE'\] = 'mysqli';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
 sed -i "s/\$configValues\['CONFIG_DB_HOST'\] = '.*';/\$configValues\['CONFIG_DB_HOST'\] = '$MYSQL_HOST';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
 sed -i "s/\$configValues\['CONFIG_DB_USER'\] = '.*';/\$configValues\['CONFIG_DB_USER'\] = '$MYSQL_USER';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
 sed -i "s/\$configValues\['CONFIG_DB_PASS'\] = '.*';/\$configValues\['CONFIG_DB_PASS'\] = '$MYSQL_PASSWORD';/" "${WEB_ROOT}/radius/library/daloradius.conf.php"
